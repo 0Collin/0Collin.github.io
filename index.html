@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collin.money</title>
     <style>
-        /* Reset and Basic Styles */
         * {
             margin: 0;
             padding: 0;
@@ -16,17 +15,16 @@
             background: url('background.jpg') repeat;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             color: #FFFFFF;
-            overflow: hidden; /* Prevent scrollbars from appearing due to money rain */
+            overflow: hidden; 
             position: relative;
             height: 100vh;
             background-size: cover;
         }
 
-        /* Container for Content */
         .container {
             text-align: center;
             padding: 50px 20px;
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+            background-color: rgba(0, 0, 0, 0.6); 
             width: 80%;
             margin: auto;
             border: 3px dashed #00FF00;
@@ -36,7 +34,6 @@
             transform: translateY(-50%);
         }
 
-        /* Header Section */
         header {
             margin-bottom: 30px;
         }
@@ -52,16 +49,14 @@
             50% { opacity: 0; }
         }
 
-        /* Portrait Image */
         header img {
             width: 250px;
             height: 250px;
             border: 5px solid #00FF00;
             margin-top: 20px;
-            /* Square image: Remove border-radius */
+            
         }
 
-        /* About Me Section */
         section {
             margin-top: 20px;
         }
@@ -73,12 +68,12 @@
             margin-bottom: 10px;
         }
 
+
         section p {
             font-size: 1.5em;
             color: #FFFFFF;
         }
 
-        /* Retro Links */
         .links {
             margin-top: 30px;
         }
@@ -101,7 +96,6 @@
             color: #FF00FF;
         }
 
-        /* Money Rain Styles */
         .money {
             position: absolute;
             top: -100px;
@@ -119,6 +113,34 @@
                 transform: translateY(110vh) rotate(720deg);
             }
         }
+
+        .rainbow-text span {
+            display: inline-block;
+            animation: rainbow 2s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            56% { color: blue; }
+            70% { color: indigo; }
+            84% { color: violet; }
+            100% { color: red; }
+        }
+        
+        section span {
+            text-decoration: underline;
+        }
+
+        .rainbow-text span:nth-child(1) { animation-delay: 0s; }
+        .rainbow-text span:nth-child(2) { animation-delay: 0.2s; }
+        .rainbow-text span:nth-child(3) { animation-delay: 0.4s; }
+        .rainbow-text span:nth-child(4) { animation-delay: 0.6s; }
+        .rainbow-text span:nth-child(5) { animation-delay: 0.8s; }
+        .rainbow-text span:nth-child(6) { animation-delay: 1s; }
+        .rainbow-text span:nth-child(7) { animation-delay: 1.2s; }
     </style>
 </head>
 <body>
@@ -126,17 +148,19 @@
     <div class="container">
         <header>
             <h1>Collin.money</h1>
-            <!-- Add your image as "collin_square.jpg" in the root folder -->
             <img src="collin.jpg" alt="Collin">
         </header>
 
         <section>
-            <h2>About Me</h2>
-            <p>I make money</p>
+            <section>
+                <h2 class="rainbow-text">
+                    <span>A</span><span>b</span><span>o</span><span>u</span><span>t</span> <span>M</span><span>e</span>
+                </h2>
+                <p>I make money</p>
+            </section>
         </section>
 
         <div class="links">
-            <!-- Retro Web Ring Style Links -->
             <a href="#">Home</a>
             <a href="#">Gallery</a>
             <a href="#">Contact</a>
@@ -144,38 +168,29 @@
         </div>
     </div>
 
-    <!-- Money Rain Effect -->
     <script>
-        // Configuration
-        const moneyCount = 80; // Increased number of money notes raining
-        const moneyImages = ['money1.png', 'money2.png', 'money3.png']; // Ensure these images are in the root folder
+        const moneyCount = 80;
+        const moneyImages = ['money1.jpg', 'money2.png', 'money3.png'];
 
-        // Function to create money elements
         function createMoney() {
             for (let i = 0; i < moneyCount; i++) {
                 const money = document.createElement('div');
                 money.classList.add('money');
-                // Randomize horizontal position
                 money.style.left = Math.random() * 100 + 'vw';
-                // Randomize animation duration
-                const duration = Math.random() * 8 + 5; // 5 to 13 seconds
+                const duration = Math.random() * 8 + 5;
                 money.style.animationDuration = duration + 's';
-                // Randomize size for variety
-                const size = Math.random() * 40 + 140; // 30px to 70px
+                const size = Math.random() * 40 + 140; 
                 money.style.width = size + 'px';
                 money.style.height = size * 0.5 + 'px';
-                // Randomize money image if multiple are provided
                 if (moneyImages.length > 0) {
                     const img = moneyImages[Math.floor(Math.random() * moneyImages.length)];
                     money.style.backgroundImage = `url('${img}')`;
                 }
-                // Randomize delay
                 money.style.animationDelay = Math.random() * -20 + 's';
                 document.body.appendChild(money);
             }
         }
 
-        // Initialize money rain on page load
         window.onload = createMoney;
     </script>
 
